@@ -4,7 +4,9 @@ const fs = require("fs");
 const app = express();
 app.use(express.json());
 app.use(express.static("public"));
-
+app.get("/", (req, res) => {
+  res.send("Server nap tien dang hoat dong");
+});
 app.post("/api/nap", (req, res) => {
   const { minecraft, amount } = req.body;
 
