@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Donate Minecraft Server</title>
+    <style>
+        body { font-family: sans-serif; background: #2c3e50; color: white; display: flex; justify-content: center; padding: 50px; }
+        .form-nap { background: #34495e; padding: 20px; border-radius: 8px; width: 300px; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: none; }
+        button { background: #27ae60; color: white; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="form-nap">
+    <h3>NẠP THẺ DONATE</h3>
+    <form method="POST">
+        <input type="text" name="mc_user" placeholder="Tên Minecraft (Ingame)" required>
+        <select name="nhamang">
+            <option value="Viettel">Viettel</option>
+            <option value="Mobifone">Mobifone</option>
+            <option value="Vinaphone">Vinaphone</option>
+        </select>
+        <select name="menhgia">
+            <option value="10.000">10.000đ</option>
+            <option value="20.000">20.000đ</option>
+            <option value="50.000">50.000đ</option>
+            <option value="100.000">100.000đ</option>
+        </select>
+        <input type="text" name="seri" placeholder="Số Seri" required>
+        <input type="text" name="pin" placeholder="Mã Thẻ" required>
+        <button type="submit" name="submit">GỬI THẺ</button>
+    </form>
+
+    <?php
+    if(isset($_POST['submit'])){
+        $user = $_POST['mc_user'];
+        $nha_mang = $_POST['nhamang'];
+        $menh_gia = $_POST['menhgia'];
+        $seri = $_POST['seri'];
+        $pin = $_POST['pin'];
+        $time = date("H:i:s d/m/Y");
+
+        // Định dạng dòng dữ liệu để bạn dễ đọc
+        $content = "[$time] User: $user | Loại: $nha_mang | Giá: $menh_gia | Seri: $seri | Pin: $pin\n";
+
+        // Ghi vào file napthe.txt
+        file_put_contents("napthe.txt", $content, FILE_APPEND);
+
+        echo "<p style='color: #2ecc71;'>Đã gửi! Vui lòng đợi Admin duyệt.</p>";
+    }
+    ?>
+</div>
+
+</body>
+</html>
+
