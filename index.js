@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
   res.send("Server nap tien dang hoat dong");
 });
 
-app.post("/nap", (req, res) => {
+app.post("/api/nap", (req, res) => {
   const { minecraft, sotien } = req.body;
 
   console.log("Nguoi nap:", minecraft, "So tien:", sotien);
